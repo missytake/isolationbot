@@ -1,4 +1,7 @@
 import deltachat
+import logging
+
+
 
 
 class AutoReplyPlugin:
@@ -14,9 +17,11 @@ class AutoReplyPlugin:
         reply.quote = message
         reply.set_text(replytext)
         message.chat.send_msg(reply)
+        logging.info("Sent isolation warning to " + message.get_sender_contact().addr)
 
 
 def main(argv=None):
+    logging.basicConfig(level=logging.INFO)
     deltachat.run_cmdline(argv=argv, account_plugins=[AutoReplyPlugin()])
 
 
