@@ -2,8 +2,6 @@ import deltachat
 import logging
 
 
-
-
 class AutoReplyPlugin:
     @deltachat.account_hookimpl
     def ac_incoming_message(self, message: deltachat.Message):
