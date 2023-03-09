@@ -2,12 +2,14 @@ import deltachat
 import logging
 import os
 import sys
+import pkg_resources
 
 
 class AutoReplyPlugin:
     @deltachat.account_hookimpl
     def ac_incoming_message(self, message: deltachat.Message):
-        message.account.set_avatar("assets/avatar.jpg")
+        avatar = pkg_resources.resource_filename(__name__, "avatar.jpg")
+        message.account.set_avatar(avatar)
         message.create_chat()
         replytext = "Sorry, sending messages to other servers than try.webxdc.org is not " \
             "supported on this server. If you want to try out Delta Chat, just create" \
