@@ -1,5 +1,7 @@
 import deltachat
 import logging
+import os
+import sys
 
 
 class AutoReplyPlugin:
@@ -20,6 +22,17 @@ class AutoReplyPlugin:
 
 def main(argv=None):
     logging.basicConfig(level=logging.INFO)
+
+
+    if argv == None:
+        argv = sys.argv
+    if not ("--password") in argv:
+        argv.append("--password")
+        argv.append(os.environ.get("DELTACHAT_PASSWORD"))
+    if not ("--email") in argv:
+        argv.append("--email")
+        argv.append(os.environ.get("DELTACHAT_ADDR"))
+
     deltachat.run_cmdline(argv=argv, account_plugins=[AutoReplyPlugin()])
 
 

@@ -4,3 +4,5 @@ __pycache__/
 /.tox/
 /build/
 /venv/
+env/
+test.db*
